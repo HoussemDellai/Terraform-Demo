@@ -1,0 +1,4 @@
+.DS_Store
+.idea/
+drop/
+go_build_main_go
