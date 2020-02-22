@@ -14,7 +14,7 @@ resource "azurerm_app_service_plan" "ASP-TerraForm" {
   }
 }
 
-resource "azurerm_app_service" "AP-Terraform" {
+resource "azurerm_app_service" "AS-Terraform" {
   name                = "app-service-terraform"
   location            = azurerm_resource_group.RG-Terraform.location
   resource_group_name = azurerm_resource_group.RG-Terraform.name
