@@ -1,12 +1,18 @@
-resource "azurerm_resource_group" "RG-Terraform" {
-  name     = "terraform-resource-group"
+provider "azurerm" {
+  version = ">=2.0"
+  # The "feature" block is required for AzureRM provider 2.x.
+  features {}
+}
+
+resource "azurerm_resource_group" "resource_group_terraform" {
+  name     = "terraform_resource_group"
   location = "West Europe"
 }
 
-resource "azurerm_app_service_plan" "ASP-TerraForm" {
+resource "azurerm_app_service_plan" "app_service_plan_terraform" {
   name                = "terraform-appserviceplan"
-  location            = azurerm_resource_group.RG-Terraform.location
-  resource_group_name = azurerm_resource_group.RG-Terraform.name
+  location            = azurerm_resource_group.resource_group_terraform.location
+  resource_group_name = azurerm_resource_group.resource_group_terraform.name
 
   sku {
     tier = "Standard"
@@ -14,11 +20,11 @@ resource "azurerm_app_service_plan" "ASP-TerraForm" {
   }
 }
 
-resource "azurerm_app_service" "AS-Terraform" {
-  name                = "app-service-terraform"
-  location            = azurerm_resource_group.RG-Terraform.location
-  resource_group_name = azurerm_resource_group.RG-Terraform.name
-  app_service_plan_id = azurerm_app_service_plan.ASP-TerraForm.id
+resource "azurerm_app_service" "app_service_terraform" {
+  name                = "app-service-terraform-2020"
+  location            = azurerm_resource_group.resource_group_terraform.location
+  resource_group_name = azurerm_resource_group.resource_group_terraform.name
+  app_service_plan_id = azurerm_app_service_plan.app_service_plan_terraform.id
 
   site_config {
     dotnet_framework_version = "v4.0"
