@@ -1,3 +1,8 @@
+provider "azurerm" {
+  features {}
+}
+
+
 resource "azurerm_resource_group" "ARG-Terraform" {
   name     = "terraform-resource-group-azure"
   location = "West Europe"
